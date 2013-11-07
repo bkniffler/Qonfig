@@ -64,6 +64,7 @@ public enum ConfigOption
     [ConfigurationOption("Application:Style", typeof(string))]
     AppStyle
 } 
+// OR dynamically
 Configurator.Library.Add("App:Style");   
 ```
 
@@ -74,7 +75,8 @@ public enum ConfigOption
 {
     [ConfigurationOption("Application:Style", typeof(string), NonPersistent = true)]
     AppStyle
-}    
+}  
+// OR dynamically
 Configurator.Library.AddNonPersistent("App:Style", "nice-style");    
 ```
 And thats it, nice and easy persistency control!
