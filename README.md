@@ -30,7 +30,7 @@ This will create an entry to your registry, under "LocalMachine or CurrentUser\S
 
 Why the value is empty you ask? The answer is, why store it, if it's default anyways? This way, if you decide to change the default value, the old default value is safely ignored on machines that have executed your old code before. Why create it you ask? For the sake of letting them users know, what options there is to set! 
 
-Wether to use LocalMachine or CurrentUser is left to be decided by the app, depending on the privileges it has. A behavior that may be customized by setting forceLocalStorage in the constructor to be true:
+Wether to use LocalMachine or CurrentUser is left to be decided by the app, depending on the privileges it has. A behavior that may be customized by setting `forceLocalStorage` in the constructor to be true:
 ```c#
 Configurator.Init<ConfigOption>("Company:Product", typeof(RegistryAdapter), true); 
 ```
