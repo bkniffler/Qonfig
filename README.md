@@ -47,7 +47,7 @@ class Program
     {
         Configurator.Init("Company:Product");
         Configurator.Library.Add("App:Style", "nice-style");
-        Configurator.Get<int>("App:Style");
+        Configurator.Get<string>("App:Style");
         Configurator.Set("App:Style", "nicer-style");
     }
 }   
