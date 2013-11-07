@@ -22,18 +22,20 @@ class Program
 }
 ```
 
-So, whats going on here? First, we define the configuration model. Take a look at the ConfigOption enum. It contains an option, decorated with a special attribute that defines the path and name (use ':', '/' or '\' for separation) and the default value.
+So, whats going on here? First, we define the configuration model. Take a look at the `ConfigOption` enum. It contains an option, decorated with a special attribute that defines the path and name (use ':', '/' or '\' for separation) and the default value.
 
-Then, we execute the Main function. First thing is to initialize the static Configurator class. As we want to use specific configuration options, we pass the ConfigOption enum type as <T> and the configuration storage path (again, choose the separator) as a string. Optionally, set the adapter type or get the default one (RegistryAdapter).
+Then, we execute the Main function. First thing is to initialize the static `Configurator` class. As we want to use specific configuration options, we pass the `ConfigOption` enum type as `<T>` and the configuration storage path (again, choose the separator) as a string. Optionally, set the adapter type or get the default one (`RegistryAdapter`).
 
 This will create an entry to your registry, under "LocalMachine or CurrentUser\Software\Company\Product\App" named "Style" with an empty value.
 
 Why the value is empty you ask? The answer is, why store it, if it's default anyways? This way, if you decide to change the default value, the old default value is safely ignored on machines that have executed your old code before. Why create it you ask? For the sake of letting them users know, what options there is to set! 
 
 Wether to use LocalMachine or CurrentUser is left to be decided by the app, depending on the privileges it has. A behavior that may be customized by setting forceLocalStorage in the constructor to be true:
-
+```c#
 Configurator.Init<ConfigOption>("Company:Product", typeof(RegistryAdapter), true); 
-Next, use the enum extensions GetConfigurationValue<T> and SetConfigurationValue to get the value of a specific type or to set it. 
+```
+
+Next, use the enum extensions `GetConfigurationValue<T>` and `SetConfigurationValue` to get the value of a specific type or to set it. 
 
 Thats it for explicit usage of the library. So lets get on with dynamic usage!
 
@@ -50,7 +52,7 @@ class Program
     }
 }   
 ```
-Ok, initialize the Configurator with a storage path and dynamically add as much configuration items to the Library as you wish. Define the path and name as well as a default value, if you wish.
+Ok, initialize the `Configurator` with a storage path and dynamically add as much configuration items to the `Library` as you wish. Define the path and name as well as a default value, if you wish.
 
 ### Non-Defaulted
 
@@ -66,7 +68,7 @@ Configurator.Library.Add("App:Style");
 ```
 
 ### Non-Persistent
-You'd like to use configuration options that shall not be modified by any user? Go on, define the NonPersistent property and assign it the 'true' value! Or add the option using the Library.AddNonPersistent method if you're on the dynamic side.
+You'd like to use configuration options that shall not be modified by any user? Go on, define the `NonPersistent` property and assign it the `true` value! Or add the option using the `Library.AddNonPersistent` method if you're on the dynamic side.
 ```c#
 public enum ConfigOption
 {
@@ -78,7 +80,7 @@ Configurator.Library.AddNonPersistent("App:Style", "nice-style");
 And thats it, nice and easy persistency control!
 
 ### Storage
-Choices are always good, so how do I store my data? Just specify an adapter or go and write your own. We'll see later on how.
+Choices are always good, so how do I store my data? Just specify an adapter or go and write your own (just implement the abstract `ConfigurationAdapter` class and you're set)!
 ```c#
 Configurator.Init<ConfigOption>("Company:Product", typeof(RegistryAdapter)); 
 ```
