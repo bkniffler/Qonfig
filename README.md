@@ -4,6 +4,8 @@ Qonfig
 **Very Simple and expandable configuration framework.**
 Lets take a look at how easy it could possibly get to create a configuration context for your application.
 
+**Only registry is currently possible as storage target. I hope I'll find more time to implement at least file-storage as .ini soon! You can always write your own adapter by implementing the abstract ConfigurationAdapter class.**
+
 ### Specific
 ```c#
 public enum ConfigOption
