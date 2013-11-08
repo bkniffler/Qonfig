@@ -57,7 +57,7 @@ namespace Qonfig.Extensions
         /// </summary>
         /// <param name="item">Enum value to check</param>
         /// <returns>Value of item</returns>
-        public static object GetConfigurationValue<T>(this Enum item)
+        public static T GetConfigurationValue<T>(this Enum item)
         {
             var type = item.GetType();
             var fieldInfo = type.GetField(item.ToString());
